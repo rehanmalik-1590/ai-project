@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+
+@tailwind utilities;
+
+:root {
+  --accent-color: #00f0ff;
+}
+
+/* Cyberpunk font */
+@font-face {
+  font-family: 'Cyber';
+  src: url('/fonts/Cyberpunk.woff2') format('woff2');
+}
+
+/* Base styles */
+body {
+  @apply bg-gray-950 text-gray-100;
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+}
+
+/* Grid pattern */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(55, 65, 81, 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(55, 65, 81, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Radial gradient */
+.bg-radial-gradient {
+  background: radial-gradient(circle at center, rgba(0, 240, 255, 0.05) 0%, transparent 70%);
+}
+
+/* Terminal window */
+.terminal-window {
+  @apply bg-gray-900 border border-gray-800 rounded-lg;
+  box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+/* Glitch effect */
+.glitch-effect {
+  animation: glitch 0.5s linear infinite;
+}
+
+@keyframes glitch {
+  0% { filter: hue-rotate(0deg); }
+  20% { filter: hue-rotate(10deg); }
+  40% { filter: hue-rotate(-10deg); }
+  60% { filter: hue-rotate(5deg); }
+  80% { filter: hue-rotate(-5deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+/* Cyber panel */
+.cyber-panel {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+  position: relative;
+}
+
+.cyber-panel::before {
+  content: '';
+  @apply absolute inset-0 border border-gray-700 pointer-events-none;
+  clip-path: polygon(
+    0 0, calc(100% - 10px) 0, 100% 10px, 
+    100% 100%, 10px 100%, 0 calc(100% - 10px)
+  );
+}
+
+/* Holographic display */
+.holo-display {
+  position: relative;
+  overflow: hidden;
+}
+
+.holo-display::before {
+  content: '';
+  @apply absolute inset-0 opacity-20 pointer-events-none;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 240, 255, 0.8) 0%,
+    rgba(138, 43, 226, 0.8) 100%
+  );
+  filter: blur(20px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}
+
+/* Input focus */
+input:focus, textarea:focus {
+  @apply outline-none ring-1;
+  ring-color: var(--accent-color);
+}
+
+/* Animations */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-10;
+  animation: scanline 6s linear infinite;
+}
+
+/* Neon text */
+.neon-text {
+  text-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color);
+}
+
+/* Pulsing animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
